@@ -31,7 +31,7 @@ public abstract class ADTStack implements Serializable {
      * @return Retorna true si es posible agregar el elemento, false en caso
      * contrario.
      */
-    public abstract boolean push(Comparable E);
+    public abstract boolean push(Object E);
     
     /**
      * Saca el último elemento ingresado a la pila. Retorna null si la pila

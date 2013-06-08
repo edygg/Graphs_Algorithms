@@ -34,7 +34,7 @@ public class SLQueue extends ADTQueue {
      * @see ADTQueue#queue(java.lang.Object) 
      */
     @Override
-    public boolean queue(Comparable E) {
+    public boolean queue(Object E) {
         SLNode neo = new SLNode(E);
         
         //Verifica que hubo memoria para crear el nodo

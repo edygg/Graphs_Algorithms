@@ -42,7 +42,7 @@ public class SLList extends ADTList implements Serializable {
      * @see ADTList#insert(java.lang.Object, int) 
      */
     @Override
-    public boolean insert(Comparable E, int p) {
+    public boolean insert(Object E, int p) {
         //Precondición: es una posición valida
         if (!(p >= 0 && p <= size)) {
             return false;
@@ -86,7 +86,7 @@ public class SLList extends ADTList implements Serializable {
      * @return Retorna true si es posible insertarlo en la lista, false en 
      * caso contrario.
      */
-    public boolean insert(Comparable E) {
+    public boolean insert(Object E) {
         return this.insert(E, size);
     }
     
@@ -99,7 +99,7 @@ public class SLList extends ADTList implements Serializable {
      * @see ADTList#remove(int) 
      */
     @Override
-    public Comparable remove(int p) {
+    public Object remove(int p) {
         //Precondición: La lista está vacía
         if (isEmpty()) {
             return null;
@@ -112,7 +112,7 @@ public class SLList extends ADTList implements Serializable {
         //Nodo a remover
         SLNode rem = head;
         //Valor almacenado en el nodo que se retorna
-        Comparable retval = null;
+        Object retval = null;
         
         //Caso 1: se remueve la cabeza
         if (p == 0) {
@@ -144,7 +144,7 @@ public class SLList extends ADTList implements Serializable {
      * @see ADTList#first() 
      */
     @Override
-    public Comparable first() {
+    public Object first() {
         //Precondición: La lista está vacía
         if (isEmpty()) {
             return null;
@@ -161,7 +161,7 @@ public class SLList extends ADTList implements Serializable {
      * @see ADTList#last() 
      */
     @Override
-    public Comparable last() {
+    public Object last() {
         //Precondición: La lista está vacía
         if (isEmpty()) {
             return null;
@@ -228,7 +228,7 @@ public class SLList extends ADTList implements Serializable {
      * @see ADTList#indexOf(java.lang.Object) 
      */
     @Override
-    public int indexOf(Comparable E) {
+    public int indexOf(Object E) {
         if (isEmpty()) {
             return -1;
         }
@@ -253,7 +253,7 @@ public class SLList extends ADTList implements Serializable {
      * contrario.
      */
     @Override
-    public Comparable get(int p) {
+    public Object get(int p) {
         //Si la lista está vacía no hay elementos
         if (isEmpty()) {
             return null;

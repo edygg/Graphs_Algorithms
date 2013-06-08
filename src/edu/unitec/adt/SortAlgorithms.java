@@ -1,5 +1,6 @@
 package edu.unitec.adt;
 
+import java.util.Comparator;
 import java.util.Random;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Random;
  */
 public class SortAlgorithms {
 
-    public static ADTList quicksort(ADTList input) {
+    public static ADTList quicksort(ADTList input, Comparator comp) {
         if (input.getSize() <= 1) {
             return input;
         }
@@ -17,13 +18,13 @@ public class SortAlgorithms {
         int middle = new Random().nextInt(input.getSize());
         //---------------------------------------------------------------------
         
-        Comparable pivot = input.get(middle);
+        Object pivot = input.get(middle);
 
         ADTList less = new SLList();
         ADTList greater = new SLList();
 
         for (int i = 0; i < input.getSize(); i++) {
-            if (input.get(i).compareTo(pivot) == 0 || input.get(i).compareTo(pivot) == -1) {
+            if (comp.compare(input.get(i), pivot) == 0 || comp.compare(input.get(i), pivot) == -1) {
                 if (i != middle) {
                     less.insert(input.get(i), less.getSize());
                 }
@@ -33,10 +34,10 @@ public class SortAlgorithms {
         }
 
         
-        return concatenate(quicksort(less), pivot, quicksort(greater));
+        return concatenate(quicksort(less, comp), pivot, quicksort(greater, comp));
     }
 
-    private static ADTList concatenate(ADTList less, Comparable pivot, ADTList greater) {
+    private static ADTList concatenate(ADTList less, Object pivot, ADTList greater) {
         ADTList neo = new SLList();
         for (int i = 0; i < less.getSize(); i++) {
             neo.insert(less.get(i), neo.getSize());
@@ -49,5 +50,27 @@ public class SortAlgorithms {
         }
 
         return neo;
+    }
+    
+    public static int binarySearch(ADTList list, Object key, Comparator comp) {
+        if (list.isEmpty()) {
+            return -1;
+        }
+        
+        int min = 0, max = list.getSize() - 1;
+        
+        while (min <= max) {
+            int middle = (max + min) / 2;
+            
+            if (comp.compare(list.get(middle), key) == 0) {
+                return middle;
+            } else if (comp.compare(list.get(middle), key) == -1) {
+                min = middle + 1;
+            } else {
+                max = middle - 1;
+            }
+        }
+        
+        return -1;
     }
 }

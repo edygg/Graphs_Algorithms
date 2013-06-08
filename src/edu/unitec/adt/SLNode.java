@@ -16,7 +16,7 @@ public class SLNode implements Serializable {
     /**
      * Objecto que contiene los datos.
      */
-    private Comparable data;
+    private Object data;
     
     /**
      * Referencia al siguiente nodo.
@@ -36,7 +36,7 @@ public class SLNode implements Serializable {
      * en la estructura, inicializa la referencia al siguiente nodo en null.
      * @param data Dato que será almacenado dentro de la estructura nodo.
      */
-    public SLNode(Comparable data) {
+    public SLNode(Object data) {
         this.data = data;
         this.next = null;
     }
@@ -45,7 +45,7 @@ public class SLNode implements Serializable {
      * Mutador para los datos del nodo.
      * @param data Datos que se almacenarán en el nodo.
      */
-    public void setData(Comparable data) {
+    public void setData(Object data) {
         this.data = data;
     }
     
@@ -53,7 +53,7 @@ public class SLNode implements Serializable {
      * Metodo accesor para los datos del nodo.
      * @return Retornan el objeto que almacena el nodo.
      */
-    public Comparable getData() {
+    public Object getData() {
         return this.data;
     }
     

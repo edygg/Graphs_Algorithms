@@ -30,7 +30,7 @@ public abstract class ADTQueue implements Serializable {
      * @return Retorna true si es posible agregarlo a la cola, false en caso
      * contrario.
      */
-    public abstract boolean queue(Comparable E);
+    public abstract boolean queue(Object E);
     
     /**
      * Elimina un elemento del inicio de la cola.
