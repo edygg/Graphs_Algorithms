@@ -24,7 +24,7 @@ public class SLStack extends ADTStack {
      * @see ADTStack#push(java.lang.Object) 
      */
     @Override
-    public boolean push(Object E) {
+    public boolean push(Comparable E) {
         SLNode neo = new SLNode(E);
         
         //Revisa que hubo espacio para crear el nodo

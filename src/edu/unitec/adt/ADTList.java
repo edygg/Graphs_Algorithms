@@ -32,7 +32,7 @@ public abstract class ADTList implements Serializable {
      * @return Retorna true si se logró insertar el elemento en una posición
      * válida, false el caso contrario.
      */
-    public abstract boolean insert(Object E, int p);
+    public abstract boolean insert(Comparable E, int p);
     
     /**
      * Elimina un elemento de la lista.
@@ -40,21 +40,21 @@ public abstract class ADTList implements Serializable {
      * @return Retorna true si el elemento se removió exitosamente, false
      * en caso contrario.
      */
-    public abstract Object remove(int p);
+    public abstract Comparable remove(int p);
     
     /**
      * Retorna el objeto que se encuentra en la primera posición de la lista.
      * @return Retorna el elemento en la primer posición, null si la
      * lista está vacía.
      */
-    public abstract Object first();
+    public abstract Comparable first();
     
     /**
      * Retorna el último objeto de la lista.
      * @return Retorna el último elemento de la lista, null si la lista está
      * vacía.
      */
-    public abstract Object last();
+    public abstract Comparable last();
     
     /**
      * Retorna la capacidad actual de la lista
@@ -82,7 +82,7 @@ public abstract class ADTList implements Serializable {
      * @return Retorna él indice dentro de la lista si se encuentra, caso 
      * contrario retorna -1.
      */
-    public abstract int indexOf(Object E);
+    public abstract int indexOf(Comparable E);
     
     /**
      * Retorna el objeto que está en la posición especificada como parámetro del método, si ésta es
@@ -91,7 +91,7 @@ public abstract class ADTList implements Serializable {
      * @return Retorna el objecto si la posición es válida, null en el caso 
      * contrario.
      */
-    public abstract Object get(int p);    
+    public abstract Comparable get(int p);    
             
     /**
      * Retorna un booleano que identifica si la lista está vacía o no.
