@@ -1,7 +1,6 @@
 
 package edu.unitec.adt;
 
-import sun.awt.datatransfer.DataTransferer;
 
 /**
  *
@@ -56,6 +55,56 @@ public class ListSet extends ADTSet {
             return false;
         }
     }
+
+    @Override
+    public ADTSet substraction(ADTSet set) {
+        if (!(set instanceof ListSet)){
+            return null;
+        }
+        
+        ListSet tmp = (ListSet) set;
+        
+        for (int i = 0; i < tmp.elements.getSize(); i++) {
+            this.removeElement(tmp.elements.get(i));
+        }
+        
+        return this;
+    }
+
+    @Override
+    public ADTSet union(ADTSet set) {
+        if (!(set instanceof ListSet)) {
+            return null;
+        }
+        
+        for (int i = 0; i < ((ListSet) set).elements.getSize(); i++) {
+            this.addElement(((ListSet) set).elements.get(i));
+        }
+        
+        return this;
+    }
+
+    @Override
+    public ADTSet intersection(ADTSet set) {
+        if (!(set instanceof ListSet)) {
+            return null;
+        }
+        
+        ADTSet inter = new ListSet();
+        
+        for (int i = 0; i < ((ListSet) set).elements.getSize(); i++) {
+            if (this.contains(((ListSet) set).elements.get(i))) {
+              inter.addElement(((ListSet) set).elements.get(i));
+            }
+        }
+        
+        return inter;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return elements.isEmpty();
+    }
     
     public void print() {
         for (int i = 0; i < elements.getSize(); i++) {
@@ -64,4 +113,7 @@ public class ListSet extends ADTSet {
         System.out.println();
     }
     
+    public ADTList toList() {
+        return elements;
+    }
 }

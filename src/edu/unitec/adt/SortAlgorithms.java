@@ -24,7 +24,7 @@ public class SortAlgorithms {
         ADTList greater = new SLList();
 
         for (int i = 0; i < input.getSize(); i++) {
-            if (comp.compare(input.get(i), pivot) == 0 || comp.compare(input.get(i), pivot) == -1) {
+            if (comp.compare(input.get(i), pivot) == 0 || comp.compare(input.get(i), pivot) < 0) {
                 if (i != middle) {
                     less.insert(input.get(i), less.getSize());
                 }
@@ -64,7 +64,7 @@ public class SortAlgorithms {
             
             if (comp.compare(list.get(middle), key) == 0) {
                 return middle;
-            } else if (comp.compare(list.get(middle), key) == -1) {
+            } else if (comp.compare(list.get(middle), key) < 0) {
                 min = middle + 1;
             } else {
                 max = middle - 1;
