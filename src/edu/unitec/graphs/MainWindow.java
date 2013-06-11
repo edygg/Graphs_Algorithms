@@ -13,6 +13,7 @@ import edu.unitec.adt.ListSet;
 import edu.unitec.adt.SLList;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.io.BufferedReader;
@@ -64,7 +65,17 @@ public class MainWindow extends JFrame {
         this.add(labelPanel, BorderLayout.SOUTH);
     }
 
-    public void generateStatistics(String directory) {
+    private void dataAnalisysForm() {
+        this.remove(labelPanel);
+        this.setLayout(new FlowLayout());
+    }
+    
+    public void showStatistics() {
+        this.setVisible(false);
+        dataAnalisysForm();
+        this.setVisible(true);
+    }    
+    public void prepareStatistics(String directory) {
         this.setVisible(false);
         File graphsFolder = new File(directory);
 

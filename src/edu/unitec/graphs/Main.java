@@ -22,6 +22,7 @@ public class Main {
         MainWindow m = new MainWindow(APP_NAME);
         m.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         m.pack();
-        m.generateStatistics(GRAPHS_DIRECTORY);
+        m.prepareStatistics(GRAPHS_DIRECTORY);
+        m.showStatistics();
     }
 }
