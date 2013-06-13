@@ -37,17 +37,19 @@ public class GraphsAlgorithms {
         Object[] neighbors = graph.getNeighbors(vertex).toArray();
         Arrays.sort(neighbors);
         for (int i = 0; i < neighbors.length; i++) {
-            double w = graph.findEdge(vertex, (String) neighbors[i]).getWeight();
 
-            shortPaths[Arrays.binarySearch(vertices, neighbors[i])] = w;
+            if (graph.findEdge(vertex, (String) neighbors[i]) != null) {
+                double w = graph.findEdge(vertex, (String) neighbors[i]).getWeight();
+                shortPaths[Arrays.binarySearch(vertices, neighbors[i])] = w;
 
-            if (i == 0) {
-                shortWeight = w;
-                currentShortVertex = (String) neighbors[i];
-            } else {
-                if (w < shortWeight) {
+                if (i == 0) {
                     shortWeight = w;
                     currentShortVertex = (String) neighbors[i];
+                } else {
+                    if (w < shortWeight) {
+                        shortWeight = w;
+                        currentShortVertex = (String) neighbors[i];
+                    }
                 }
             }
         }
@@ -82,7 +84,6 @@ public class GraphsAlgorithms {
 
         }
 
-
         return shortPaths;
     }
 
@@ -101,4 +102,37 @@ public class GraphsAlgorithms {
 
         return m;
     }
+    
+    public static double[][] floyd(DirectedSparseGraph<String, Edge> graph) {
+        double[][] shortPaths = new double[graph.getVertexCount()][graph.getVertexCount()];
+        
+        for (int i = 0; i < shortPaths.length; i++) {
+            Arrays.fill(shortPaths[i], Double.POSITIVE_INFINITY);
+            shortPaths[i][i] = 0;
+        }
+        
+        Object[] vertices = graph.getVertices().toArray();
+        Arrays.sort(vertices);
+        
+        for (int i = 0; i < vertices.length; i++) {
+            for (int j = 0; j < vertices.length; j++) {
+                if (i != j && graph.findEdge((String) vertices[i], (String) vertices[j]) != null) {
+                    shortPaths[i][j] = graph.findEdge((String) vertices[i], (String) vertices[j]).getWeight();
+                } 
+            }
+        }
+        
+        for (int k = 0; k < shortPaths.length; k++) {
+            for (int i = 0; i < shortPaths.length; i++) {
+                for (int j = 0; j < shortPaths.length; j++) {
+                    if (shortPaths[i][k] + shortPaths[k][j] < shortPaths[i][j]) {
+                        shortPaths[i][j] = shortPaths[i][k] + shortPaths[k][j];
+                    }
+                }
+            }
+        }
+        
+        return shortPaths;
+    }
+    
 }

@@ -9,6 +9,7 @@ import edu.uci.ics.jung.graph.DirectedSparseGraph;
 import edu.uci.ics.jung.graph.util.Pair;
 import edu.uci.ics.jung.visualization.VisualizationImageServer;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
+import edu.unitec.adt.GraphsAlgorithms;
 import edu.unitec.adt.ListSet;
 import edu.unitec.adt.SLList;
 import java.awt.BorderLayout;
@@ -26,6 +27,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
 /**
  *
@@ -37,6 +46,7 @@ public class MainWindow extends JFrame {
     private JLabel lbl_edgesCount;
     private JPanel labelPanel;
     private SLList graphs;
+    private XYSeriesCollection dataTable;
 
     public MainWindow(String string) throws HeadlessException {
         super(string);
@@ -65,11 +75,32 @@ public class MainWindow extends JFrame {
         this.add(labelPanel, BorderLayout.SOUTH);
     }
 
+    //NOT IMPLEMENTED YET!!!!!!!!!!!-------------------------------------------
     private void dataAnalisysForm() {
         this.remove(labelPanel);
         this.setLayout(new FlowLayout());
+        JFreeChart analisys = ChartFactory.createScatterPlot(
+                "Performance Comparison",       //Title
+                "Time (ms)",                    //Y Axis
+                "Vertices",                     //X Axis
+                dataTable,                      //Data series
+                PlotOrientation.HORIZONTAL,     //Position
+                true,                           //include legend
+                true,                           //Tooltips
+                false                           //URL
+        );
+        
+        XYPlot plot = (XYPlot) analisys.getPlot();
+        XYLineAndShapeRenderer render = new XYLineAndShapeRenderer();
+        render.setSeriesLinesVisible(0, true); //N-Djikstra Serie
+        render.setSeriesLinesVisible(1, true); //Floyd Serie
+        plot.setRenderer(render);
+        
+        ChartPanel chartPanel = new ChartPanel(analisys);
+        chartPanel.setSize(new Dimension(600, 600));
+        this.setContentPane(chartPanel);
     }
-    
+    //-------------------------------------------------------------------------
     public void showStatistics() {
         this.setVisible(false);
         dataAnalisysForm();
@@ -87,7 +118,10 @@ public class MainWindow extends JFrame {
         if (folderAlready) {
             File files[] = graphsFolder.listFiles();
             graphs = new SLList();
-
+            dataTable = new XYSeriesCollection();
+            XYSeries nDjisktraData = new XYSeries("n-Djisktra");
+            XYSeries floydData = new XYSeries("Floyd");
+            
             for (int i = 0, j = 0; i < files.length; i++) {
                 this.setVisible(false);
                 DirectedSparseGraph<String, Edge> currentGraph = readGraphFile(files[i]);
@@ -97,7 +131,10 @@ public class MainWindow extends JFrame {
                     graphs.insert(currentGraph);
                     lbl_vertexCount.setText("Vertices = " + currentGraph.getVertexCount());
                     lbl_edgesCount.setText("Edges = " + currentGraph.getEdgeCount());
-                            
+                    
+                    nDjisktraData.add(n_djikstra(currentGraph), currentGraph.getVertexCount());
+                    floydData.add(floyd(currentGraph), currentGraph.getVertexCount());
+                    
                     CircleLayout layout = new CircleLayout((DirectedSparseGraph<String, Edge>) graphs.get(j));
                     
                     vs = new VisualizationImageServer(
@@ -119,6 +156,8 @@ public class MainWindow extends JFrame {
                 }
             }
 
+            dataTable.addSeries(nDjisktraData);
+            dataTable.addSeries(floydData);
             if (graphs.isEmpty()) {
                 JOptionPane.showMessageDialog(this, 
                         "There are not graphs in the default directory", 
@@ -130,6 +169,25 @@ public class MainWindow extends JFrame {
         } else {
             System.exit(1);
         }
+    }
+    
+    private long n_djikstra(DirectedSparseGraph<String, Edge> g) {
+        Object[] vertices = g.getVertices().toArray();
+        long initialTime = System.currentTimeMillis();
+        for (int i = 0; i < vertices.length; i++) {
+            double[] gc = GraphsAlgorithms.dijkstra(g, (String) vertices[i]);
+        }
+        long finalTime = System.currentTimeMillis();
+        
+        return finalTime - initialTime;
+    }
+    
+    private long floyd(DirectedSparseGraph<String, Edge> g) {
+        long initialTime = System.currentTimeMillis();
+        double [][] gc = GraphsAlgorithms.floyd(g);
+        long finalTime = System.currentTimeMillis();
+        
+        return finalTime - initialTime;
     }
     
     private DirectedSparseGraph<String, Edge> readGraphFile(File file) {
