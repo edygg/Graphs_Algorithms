@@ -1,12 +1,13 @@
+
 package edu.unitec.adt;
 
 import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * Implementación de ADTTree. Solamente puede tenes dos subárboles como hijos.
- * Se utiliza para generar códigos de Huffman. Implementa Serializable para
- * ser almacenado en archivos binarios.
+ * Implementación de ADTTree. Solamente puede tener dos subárboles como hijos.
+ * Se utiliza para generar códigos de Huffman. Implementa <code>Serializable</code> 
+ * para ser almacenado en archivos binarios.
  * @author EdilsonFernando
  */
 public class HuffmanTree extends ADTTree implements Serializable {
@@ -29,7 +30,8 @@ public class HuffmanTree extends ADTTree implements Serializable {
     private Comparable data;
     
     /**
-     * Contructor por defecto. Crea un árbol con todos sus atributos en null.
+     * Constructor por defecto. Crea un árbol con todos sus atributos en 
+     * <code>null</code>.
      */
     public HuffmanTree() {
         rightChild = leftChild = father = null;
@@ -37,7 +39,7 @@ public class HuffmanTree extends ADTTree implements Serializable {
     }
     
     /**
-     * Contructor que recibe como parámetro el objeto que guardará el árbol.
+     * Constructor que recibe como parámetro el objeto que guardará el árbol.
      * @param d Objeto comparable para mantener ordenado el árbol.
      */
     public HuffmanTree(Comparable d) {
@@ -54,11 +56,11 @@ public class HuffmanTree extends ADTTree implements Serializable {
     }
     
     /**
-     * Método que agrega dos subárboles al arbol raíz, retornando un nuevo 
+     * Método que agrega dos subárboles al árbol raíz, retornando un nuevo 
      * árbol con los arreglos.
      * @param r Árbol raíz.
      * @param trees Árboles que serán los hijos del árbol raíz. Esta
-     * impletentación solo acepta dos parámetros como máximo
+     * implementación solo acepta dos parámetros como máximo
      * @return Retorna un nuevo árbol con los nodos añadidos.
      * @throws NumberChildrenException Es lanzada si sobrepasa la cantidad 
      * de hijos soportados.
@@ -169,7 +171,7 @@ public class HuffmanTree extends ADTTree implements Serializable {
     /**
      * Implementación del método traverse de ADTTree. Recorre el árbol a 
      * partir del recorrido especificado y procesa cada nodo según las
-     * intrucciónes del TreeProcessor.
+     * instrucciones del TreeProcessor.
      * @param j Tipo de recorrido del árbol
      * @see Journeys#INORDER
      * @see Journeys#POSTORDER
@@ -240,8 +242,9 @@ public class HuffmanTree extends ADTTree implements Serializable {
      * Compara dos árboles, si es mayor, menor o igual. Utiliza el método 
      * compareTO de @see HuffmanTree#data para funcionar. 
      * @param t Árbol a comprar.
-     * @return Retorna 0 si ambos árboles son iguales, 1 si this es mayor que
-     * t, y -1 si this es menor que t. 
+     * @return Retorna 0 si ambos árboles son iguales, 1 si <code>this</code> 
+     * es mayor que <code>t</code>, y -1 si <code>this</code> es menor que 
+     * <code>t</code>. 
      */
     public int compareTo(HuffmanTree t) {
         return data.compareTo(t.data);
@@ -251,7 +254,7 @@ public class HuffmanTree extends ADTTree implements Serializable {
      * Comprar un HuffmanTree con otra implementación de árbol. Este método
      * no fue implementado para esta versión del programa.
      * @param t Árbol a comparar.
-     * @return lanza una excepción porque no está completa la defición del método
+     * @return lanza una excepción porque no está completa la definición del método
      */
     @Override
     public int compareTo(ADTTree t) {
@@ -272,10 +275,11 @@ public class HuffmanTree extends ADTTree implements Serializable {
     }
 
     /**
-     * Verifica la igualdad entre dos objetos: el this y el objeto que entra
-     * como parámetro.
+     * Verifica la igualdad entre dos objetos: el <code>this</code> y el objeto 
+     * que entra como parámetro.
      * @param obj Objeto a comprar.
-     * @return Retorna true si ambos objetos son iguales, false en caso contrario.
+     * @return Retorna <code>true</code> si ambos objetos son iguales, 
+     * <code>false</code> en caso contrario.
      */
     @Override
     public boolean equals(Object obj) {
@@ -292,9 +296,11 @@ public class HuffmanTree extends ADTTree implements Serializable {
     }
 
     /**
-     * Representación en String de un HuffmanTree, se ayuda del método toString
+     * Representación en <code>String</code> de un HuffmanTree, se ayuda del 
+     * método toString
      * del objeto almacenado.
-     * @return Una representación en String de la etiqueta del HuffmanTree.
+     * @return Una representación en <code>String</code> de la etiqueta del 
+     * HuffmanTree.
      */
     @Override
     public String toString() {

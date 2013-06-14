@@ -1,12 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package edu.unitec.adt;
 
 /**
  * Implementación con nodos enlazados de manera simple de una cola. Utiliza
- * mecanismos similiares a los de SLList.
+ * mecanismos similares a los de SLList.
  * @author EdilsonFernando
  * @see SLList
  */
@@ -19,18 +16,19 @@ public class SLQueue extends ADTQueue {
     private SLNode head;
     
     /**
-     * Constructor predeterminado de una SLQueue. Inicializa la cabeza en null.
+     * Constructor predeterminado de una SLQueue. Inicializa la cabeza en 
+     * <code>null</code>.
      */
     public SLQueue() {
         head = null;
     }
     
     /**
-     * Implementación del método queue de ADTQueue. Inserta un elemento al 
-     * final de la cola.
+     * Implementación del método <code>queue()</code> de ADTQueue. Inserta un 
+     * elemento al final de la cola.
      * @param E Elemento a insertar.
-     * @return Retorna true si es posible agregarlo a la cola, false en caso
-     * contrario.
+     * @return Retorna <code>true</code> si es posible agregarlo a la cola, 
+     * <code>false</code> en caso contrario.
      * @see ADTQueue#queue(java.lang.Object) 
      */
     @Override
@@ -61,10 +59,10 @@ public class SLQueue extends ADTQueue {
     }
     
     /**
-     * Implementación del método dequeue de ADTQueue. Elimina un elemento del 
-     * inicio de la cola.
+     * Implementación del método <code>dequeue()</code> de ADTQueue. Elimina un 
+     * elemento del inicio de la cola.
      * @return Retorna el elemento eliminado, si la cola está vacía retorna
-     * null.
+     * <code>null</code>.
      * @see ADTQueue#dequeue() 
      */
     @Override
@@ -87,10 +85,10 @@ public class SLQueue extends ADTQueue {
     }
     
     /**
-     * Implementación del método peek de ADTQueue. Método que retorna el 
-     * elemento inicial de la cola sin extraerlo de ella.
+     * Implementación del método <code>peek()</code> de ADTQueue. Método que 
+     * retorna el elemento inicial de la cola sin extraerlo de ella.
      * @return Retorna el primer elemento de la cola, si la cola está vacía
-     * retorna null.
+     * retorna <code>null</code>.
      * @see ADTQueue#peek() 
      */
     @Override

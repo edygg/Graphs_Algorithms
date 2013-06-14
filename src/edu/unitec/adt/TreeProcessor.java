@@ -1,3 +1,4 @@
+
 package edu.unitec.adt;
 
 /**
@@ -7,7 +8,7 @@ package edu.unitec.adt;
 public interface TreeProcessor {
     
     /**
-     * Las clases que implementen este metodo tendrán las instrucciones de 
+     * Las clases que implementen este método tendrán las instrucciones de 
      * como procesar cada nodo de un árbol específico.
      * @param obj Árbol a procesar.
      */

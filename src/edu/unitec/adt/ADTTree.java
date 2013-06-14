@@ -1,15 +1,16 @@
+
 package edu.unitec.adt;
 
 import java.io.Serializable;
 
 /**
- * Clase padre abtracta de los árboles. Implementa los métodos necesarios para
+ * Clase padre abstracta de los árboles. Implementa los métodos necesarios para
  * operar datos específicos de un árbol. Téngase en cuenta que los recorridos
  * de los árboles se definen en las implementaciones específicas, esto es para
  * mayor facilidad para algunas de éstas, también se pueden usar los métodos 
  * de este ADT para operar dichos recorridos. Implementa Comparable para
  * comprar dos árboles si es que la implementación los necesita ordenados y
- * Serializable para ser guardada en archivos binarios.
+ * <code>Serializable</code> para ser guardada en archivos binarios.
  * @see Journeys
  * @author EdilsonFernando
  */

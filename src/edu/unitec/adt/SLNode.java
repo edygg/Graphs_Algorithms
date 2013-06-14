@@ -1,20 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package edu.unitec.adt;
 
 import java.io.Serializable;
 
 /**
  * Estructura nodo que encapsula los datos y mantiene un apuntador al siguiente
- * elemento nodo. Implementa Serializable para ser almacenado en archivos 
- * binarios.
+ * elemento nodo. Implementa <code>Serializable</code> para ser almacenado en 
+ * archivos binarios.
  * @author EdilsonFernando
  */
 public class SLNode implements Serializable {
     /**
-     * Objecto que contiene los datos.
+     * Objeto que contiene los datos.
      */
     private Object data;
     
@@ -25,7 +22,7 @@ public class SLNode implements Serializable {
     
     /**
      * Constructor por defecto. Inicializa los datos y la referencia al
-     * siguiente nodo en null.
+     * siguiente nodo en <code>null</code>.
      */
     public SLNode() {
         this(null);
@@ -33,7 +30,8 @@ public class SLNode implements Serializable {
     
     /**
      * Constructor que recibe una referencia a un objeto para ser almacenado
-     * en la estructura, inicializa la referencia al siguiente nodo en null.
+     * en la estructura, inicializa la referencia al siguiente nodo en 
+     * <code>null</code>.
      * @param data Dato que será almacenado dentro de la estructura nodo.
      */
     public SLNode(Object data) {
@@ -42,7 +40,7 @@ public class SLNode implements Serializable {
     }
     
     /**
-     * Mutador para los datos del nodo.
+     * Método mutador para los datos del nodo.
      * @param data Datos que se almacenarán en el nodo.
      */
     public void setData(Object data) {
@@ -50,7 +48,7 @@ public class SLNode implements Serializable {
     }
     
     /**
-     * Metodo accesor para los datos del nodo.
+     * Método accesor para los datos del nodo.
      * @return Retornan el objeto que almacena el nodo.
      */
     public Object getData() {
@@ -58,7 +56,7 @@ public class SLNode implements Serializable {
     }
     
     /**
-     * Mutador para la referencia al sigiente nodo.
+     * Mutador para la referencia al siguiente nodo.
      * @param n Referencia del siguiente nodo.
      */
     public void setNext(SLNode n) {
@@ -66,7 +64,7 @@ public class SLNode implements Serializable {
     }
     
     /**
-     * Método accesor para la referencia al siguiente noo.
+     * Método accesor para la referencia al siguiente nodo.
      * @return Retorna la referencia del siguiente nodo.
      */
     public SLNode getNext() {
